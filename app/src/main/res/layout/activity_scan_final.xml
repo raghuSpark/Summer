@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:focusableInTouchMode="true"
+    android:clickable="true"
+    android:focusable="true"
+    tools:context=".ScanFinalActivity">
+
+    <TextView
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="40dp"
+        android:id="@+id/page_count"
+        android:text="Pages: 1"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/titilliumweb_semibold"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="@string/prefix"
+            android:textSize="20dp"
+            android:layout_marginStart="18dp"
+            android:fontFamily="@font/titilliumweb_regular"
+            android:textColor="@color/gray_black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/prefix_edit_text"
+            android:textSize="19dp"
+            android:fontFamily="@font/titilliumweb_semibold"
+            android:text="test-"
+            android:inputType="text"
+            android:padding="15dp"
+            android:maxLines="1"
+            android:minLines="1"
+            android:layout_marginTop="7dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="center"
+            android:background="@drawable/todo_list_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="@string/name"
+            android:textSize="20dp"
+            android:layout_marginStart="18dp"
+            android:fontFamily="@font/titilliumweb_regular"
+            android:textColor="@color/gray_black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/scan_doc_name_edit_text"
+            android:textSize="19dp"
+            android:fontFamily="@font/titilliumweb_semibold"
+            android:padding="15dp"
+            android:maxLines="1"
+            android:inputType="text"
+            android:layout_marginTop="7dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="center"
+            android:background="@drawable/todo_list_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/save_images_switch"
+        android:thumb="@drawable/switch_thumb"
+        app:track="@drawable/switch_track"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:layout_marginEnd="18dp"
+        android:textColor="@color/gray_black"
+        android:layout_marginStart="18dp"
+        android:text="@string/also_save_as_images"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/quality_text_view"
+            android:fontFamily="@font/titilliumweb_semibold"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/quality_low"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/quality_seekBar"
+            android:max="10"
+            android:progress="1"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:thumb="@drawable/seekbar_thumb"
+            android:maxHeight="8dp"
+            android:progressDrawable="@drawable/seekbar_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/save_pdf_button"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:textSize="19dp"
+            android:background="@drawable/green_filled_button"
+            android:textColor="@color/white"
+            android:text="@string/save"
+            android:textAllCaps="false"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="45dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

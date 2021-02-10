@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">SUMMER</string>
+    <string name="summer">summer</string>
+    <string name="rediscover_everyday">rediscover everyday</string>
+    <string name="background">background</string>
+    <string name="privacy">By clicking Continue you agree to Terms and Conditions and Privacy Policy.</string>
+    <string name="accept">Accept</string>
+    <string name="welcome">welcome</string>
+    <string name="login_to_get_started">login to get started</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="password">Password</string>
+    <string name="new_user_create_account">New user? <u>Create Account.</u></string>
+    <string name="login">Login</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="login_image">Login Image</string>
+    <string name="create">CREATE</string>
+    <string name="create_description">make assignments, time bound quiz and receive response directly in app</string>
+    <string name="classroom_description">share resources, put reminders, assign syllabus, send memo and more</string>
+    <string name="classroom">CLASSROOM</string>
+    <string name="profile_image">profile_image</string>
+    <string name="todo_list">Todo List</string>
+    <string name="floating_add_btn">floating_add_btn</string>
+    <string name="more_todo_list">more_todo_list</string>
+    <string name="attendance">Attendance</string>
+    <string name="resource">Resource</string>
+    <string name="scan">Scan</string>
+    <string name="doc">DOC</string>
+    <string name="menu_button">menu_button</string>
+    <string name="prefix">Prefix</string>
+    <string name="name">Name</string>
+    <string name="also_save_as_images">Also Save As Images</string>
+    <string name="save">Save</string>
+    <string name="quality_low">Quality: <font color='#E90000'>LOW</font></string>
+    <string name="preview">Preview</string>
+    <string name="_1">1</string>
+    <string name="sure">All the images will be discarded.<br> Are you sure? </br></string>
+    <string name="no">NO</string>
+    <string name="yes">YES</string>
+    <string name="done">Done</string>
+</resources>

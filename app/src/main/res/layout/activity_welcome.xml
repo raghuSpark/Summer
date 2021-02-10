@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".WelcomeActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="655dp"
+        android:layout_height="472dp"
+        android:background="@drawable/ellipse"
+        android:contentDescription="@string/background"
+        android:translationX="-92dp"
+        android:translationY="-76dp"
+        tools:ignore="MissingConstraints" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginTop="100dp"
+        android:layout_marginStart="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/appName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/rez"
+            android:text="@string/summer"
+            android:textColor="@color/white"
+            android:textSize="64dp" />
+
+        <TextView
+            android:id="@+id/app_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-10dp"
+            android:fontFamily="@font/titilliumweb_bold"
+            android:text="@string/rediscover_everyday"
+            android:textColor="@color/green"
+            android:textSize="24dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/privacyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/titilliumweb_regular"
+            android:paddingStart="50dp"
+            android:paddingEnd="50dp"
+            android:text="@string/privacy"
+            android:textColor="@color/black"
+            android:textSize="18dp" />
+
+        <Button
+            android:id="@+id/accept_button"
+            android:layout_width="219dp"
+            android:layout_height="53dp"
+            android:layout_gravity="center"
+            android:background="@drawable/button"
+            android:fontFamily="@font/titilliumweb_regular"
+            android:text="@string/accept"
+            android:textAllCaps="false"
+            android:textColor="@color/green"
+            android:textSize="18dp" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

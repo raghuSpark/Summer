@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="create">
+        <item name="android:textSize">26dp</item>
+        <item name="fontFamily">@font/titilliumweb_semibold</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="make_assign">
+        <item name="android:textSize">15dp</item>
+        <item name="fontFamily">@font/titilliumweb_regular</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="attendance">
+        <item name="fontFamily">@font/titilliumweb_bold</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:textColor">#3C3C3C</item>
+    </style>
+
+</resources>

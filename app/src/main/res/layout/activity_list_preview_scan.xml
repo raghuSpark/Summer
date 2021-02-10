@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ScanListPreviewActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ContraintLayout2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:background="@color/transparent"
+            android:id="@+id/discard_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="25dp"
+            android:paddingHorizontal="25dp"
+            android:src="@drawable/ic_close"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/delete_img_and_done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:textSize="15dp"
+            android:fontFamily="@font/titilliumweb_semibold"
+            android:textColor="@color/green"
+            android:paddingVertical="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginVertical="10dp"
+            android:paddingHorizontal="22dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:drawableEndCompat="@drawable/ic_delete" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/scan_rect_2"
+        android:paddingEnd="8dp"
+        android:paddingBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ContraintLayout2"
+        tools:ignore="RtlSymmetry" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray_black"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:background="@color/transparent"
+            android:id="@+id/gallery_import_btn"
+            android:layout_width="0dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_gallery_import"
+            android:layout_marginVertical="8dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:background="@color/transparent"
+            android:id="@+id/scan_btn"
+            android:layout_width="0dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_scan"
+            android:layout_marginVertical="14dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/save_and_make_pdf"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingVertical="14dp"
+            android:background="@color/transparent"
+            android:text="@string/save"
+            android:layout_gravity="center_vertical"
+            android:textAllCaps="false"
+            android:textSize="16dp"
+            android:textColor="@color/green"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
