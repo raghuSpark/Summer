@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
-    android:layout_marginBottom="15dp"
+    android:layout_marginBottom="5dp"
     app:cardCornerRadius="5dp"
     app:cardElevation="5dp"
     app:cardUseCompatPadding="true">
@@ -50,6 +50,7 @@
 
                     <TextView
                         android:id="@+id/scan_title"
+                        android:visibility="visible"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -61,6 +62,7 @@
 
                     <TextView
                         android:id="@+id/scan_timeStamp"
+                        android:visibility="visible"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -70,16 +72,42 @@
                         android:textColor="@color/yellowish"
                         android:textSize="17dp" />
 
+                    <EditText
+                        android:id="@+id/edit_doc_name"
+                        android:visibility="gone"
+                        android:text="Doc Name"
+                        android:textSize="17dp"
+                        android:fontFamily="@font/titilliumweb_semibold"
+                        android:background="@color/button_background"
+                        android:layout_gravity="center"
+                        android:padding="5dp"
+                        android:layout_margin="7dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
                 </LinearLayout>
 
                 <ImageButton
                     android:id="@+id/scan_menu"
+                    android:visibility="visible"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="0.1"
                     android:background="@color/transparent"
                     android:contentDescription="@string/menu_button"
                     android:src="@drawable/ic__dot_vector" />
+
+                <TextView
+                    android:id="@+id/edit_done"
+                    android:visibility="gone"
+                    android:textColor="@color/white"
+                    android:text="Done"
+                    android:textSize="18dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.1"/>
 
             </LinearLayout>
 

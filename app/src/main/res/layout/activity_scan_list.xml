@@ -8,60 +8,76 @@
     android:focusableInTouchMode="true"
     android:clickable="true"
     android:focusable="true"
-    tools:context=".ScanListActivity" >
+    tools:context=".ScanListActivity">
 
     <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:focusableInTouchMode="true">
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/search_bar"
-        android:drawablePadding="9dp"
-        android:maxLines="1"
-        android:minLines="1"
-        android:lines="1"
-        android:inputType="text"
-        android:letterSpacing="0.1"
-        android:layout_marginTop="25dp"
-        android:layout_marginStart="17dp"
-        android:layout_marginEnd="17dp"
-        android:padding="10dp"
-        android:fontFamily="@font/titilliumweb_regular"
-        android:textSize="20dp"
-        android:drawableStart="@drawable/ic_search_vector"
-        android:background="@drawable/search_scan_bg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="17dp"
+            android:background="@drawable/search_scan_bg"
+            android:drawableStart="@drawable/ic_search_vector"
+            android:drawablePadding="9dp"
+            android:fontFamily="@font/titilliumweb_regular"
+            android:inputType="text"
+            android:lines="1"
+            android:maxLines="1"
+            android:minLines="1"
+            android:padding="10dp"
+            android:textSize="20dp" />
 
-    <Button
-        android:id="@+id/DOC_btn"
-        android:text="@string/doc"
-        android:textSize="15dp"
-        android:layout_marginTop="11dp"
-        android:fontFamily="@font/titilliumweb_semibold"
-        android:layout_gravity="end"
-        android:layout_marginEnd="17dp"
-        android:textColor="@color/white"
-        android:background="@drawable/doc_btn_scan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/DOC_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="11dp"
+            android:layout_marginEnd="17dp"
+            android:background="@drawable/doc_btn_scan"
+            android:fontFamily="@font/titilliumweb_semibold"
+            android:text="@string/doc"
+            android:textColor="@color/white"
+            android:textSize="15dp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/scan_recycler_view"
-        android:layout_marginTop="11dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_gravity="center"
-        android:paddingTop="10dp"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/todo_list_bg"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:ignore="RtlSymmetry"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/scan_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/todo_list_bg"
+            android:paddingTop="10dp"
+            tools:ignore="RtlSymmetry" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/no_results_text_view"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No results found..."
+        android:textColor="@color/gray_black"
+        android:textSize="18dp"
+        android:fontFamily="@font/titilliumweb_semibold"
+        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout4"
+        app:layout_constraintTop_toTopOf="parent" />
 
 <!--    <ImageButton-->
 <!--        android:id="@+id/create_new_file_btn"-->

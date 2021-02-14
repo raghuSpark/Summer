@@ -260,6 +260,14 @@ public class ScanFinalActivity extends AppCompatActivity {
     private void savePDFLessThanEqualToQ(PdfDocument pdfDocument, String pdf_name) {
         File root = new File(getExternalFilesDir(null) + "/Summer");
         if (!root.exists()) root.mkdir();
+
+        int i=1;
+        String temp = pdf_name;
+        while(pdfListEssentialsDBHandler.alreadyExists(pdf_name)) {
+            pdf_name = temp+"("+i+")";
+            i++;
+        }
+
         File file = new File(root, pdf_name + ".pdf");
         try {
             pdfDocument.writeTo(new FileOutputStream(file));
@@ -278,7 +286,6 @@ public class ScanFinalActivity extends AppCompatActivity {
     private String getDate(long time) {
         Calendar cal = Calendar.getInstance(Locale.ENGLISH);
         cal.setTimeInMillis(time * 1000);
-        String date = DateFormat.format("dd-MM-yyyy", cal).toString();
-        return date;
+        return DateFormat.format("dd-MM-yyyy", cal).toString();
     }
 }

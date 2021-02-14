@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.raghu.summer.model.ScanDetails;
 import com.raghu.summer.model.ScanDocListDetails;
 
 import java.io.ByteArrayOutputStream;
@@ -47,19 +46,21 @@ public class PDFListEssentialsDBHandler extends SQLiteOpenHelper {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         Bitmap PDFToBeStored = scanDocListDetails.getPreviewImage();
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        PDFToBeStored.compress(Bitmap.CompressFormat.JPEG,100, byteArrayOutputStream);
+        PDFToBeStored.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
 
         byte[] imageByte = byteArrayOutputStream.toByteArray();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("PDFPosition",scanDocListDetails.getPos());
-        contentValues.put("pdfTitle",scanDocListDetails.getDocName());
-        contentValues.put("timeStamp",scanDocListDetails.getDate());
+        contentValues.put("PDFPosition", scanDocListDetails.getPos());
+        contentValues.put("pdfTitle", scanDocListDetails.getDocName());
+        contentValues.put("timeStamp", scanDocListDetails.getDate());
         contentValues.put("image", imageByte);
 
-        long check = sqLiteDatabase.insert("PDFList",null,contentValues);
-        if(check!=-1) {
+        long check = sqLiteDatabase.insert("PDFList", null, contentValues);
+        if (check != -1) {
             sqLiteDatabase.close();
-        } else Toast.makeText(context, "Error!Failed to insert image into the database", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Error!Failed to insert image into the database", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public ArrayList<ScanDocListDetails> getAllPDFs() {
@@ -69,37 +70,61 @@ public class PDFListEssentialsDBHandler extends SQLiteOpenHelper {
 
         //cursor that gets the values back
         @SuppressLint("Recycle")
-        Cursor cursor = sqLiteDatabase.rawQuery("select * from PDFList",null);
+        Cursor cursor = sqLiteDatabase.rawQuery("select * from PDFList", null);
 
-        if (cursor.getCount()!=0) {
+        if (cursor.getCount() != 0) {
             while (cursor.moveToNext()) {
                 int pdf_pos = cursor.getInt(0);
                 String doc_name = cursor.getString(1);
                 String date = cursor.getString(2);
                 byte[] image_bytes = cursor.getBlob(3);
-                Bitmap image_bitmap = BitmapFactory.decodeByteArray(image_bytes,0,image_bytes.length);
-                image_bitmap = Bitmap.createBitmap(image_bitmap,0,0,image_bitmap.getWidth(),450);
-                doc_list.add(new ScanDocListDetails(image_bitmap,doc_name,date,pdf_pos));
+                Bitmap image_bitmap = BitmapFactory.decodeByteArray(image_bytes, 0, image_bytes.length);
+                int height = Math.min(image_bitmap.getHeight(), 450);
+                image_bitmap = Bitmap.createBitmap(image_bitmap, 0, 0, image_bitmap.getWidth(), height);
+                doc_list.add(new ScanDocListDetails(image_bitmap, doc_name, date, pdf_pos));
             }
-            return doc_list;
-
         } else {
             Toast.makeText(context, "NO Documents ARE PRESENT", Toast.LENGTH_SHORT).show();
-            return null;
         }
+        sqLiteDatabase.close();
+        return doc_list;
     }
 
-    public void deleteAPDF(String doc_title) {
+    public boolean deleteAPDF(String doc_title) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        return sqLiteDatabase.delete("PDFList", "pdfTitle" + "='" + doc_title + "' ;", null) > 0;
+    }
+
+    public boolean updatePDFName(String new_name, String date, Bitmap preview_image, int pos) {
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+
+        ContentValues args = new ContentValues();
+        args.put("PDFPosition", pos);
+        args.put("pdfTitle", new_name);
+        args.put("timeStamp", date);
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        preview_image.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+        args.put("image", byteArray);
+        sqLiteDatabase.update("PDFList",args,"PDFPosition" + "='" + pos + "' ;", null);
+        sqLiteDatabase.close();
+        return true;
+    }
+
+    public boolean alreadyExists(String new_name) {
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
 
         @SuppressLint("Recycle")
         Cursor cursor = sqLiteDatabase.rawQuery("select * from PDFList", null);
-
-        if (cursor.getCount()!=0) {
-            while (!cursor.getString(1).equals(doc_title)) {
-                if (!cursor.moveToNext()) break;
+        if (cursor.getCount() != 0) {
+            while (cursor.moveToNext()) {
+                if (new_name.equals(cursor.getString(1))) {
+                    sqLiteDatabase.close();
+                    return true;
+                }
             }
-            sqLiteDatabase.delete("PDFList","pdfTitle"+"="+doc_title,null);
         }
+        sqLiteDatabase.close();
+        return false;
     }
 }

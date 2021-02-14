@@ -6,19 +6,17 @@ import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.StrictMode;
-import android.provider.DocumentsContract;
-import android.util.Log;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.raghu.summer.database.PDFListEssentialsDBHandler;
 import com.raghu.summer.model.ScanDocListDetails;
@@ -30,8 +28,9 @@ import java.util.ArrayList;
 public class ScanListActivity extends AppCompatActivity {
 
     private Button DOC_button;
-//    private ImageButton fabButton;
+    //    private ImageButton fabButton;
     private EditText searchBar;
+    private TextView noResults;
 
     private RecyclerView recyclerView;
     private ScannedDocsRecyclerViewAdapter docsRecyclerViewAdapter;
@@ -39,6 +38,7 @@ public class ScanListActivity extends AppCompatActivity {
 
     PDFListEssentialsDBHandler pdfListEssentialsDBHandler;
 
+    @SuppressLint("SetTextI18n")
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,7 @@ public class ScanListActivity extends AppCompatActivity {
 //        StrictMode.setVmPolicy(builder.build());
 
         recyclerView = findViewById(R.id.scan_recycler_view);
-        searchBar = findViewById(R.id.search_bar);
+        noResults = findViewById(R.id.no_results_text_view);
 
         pdfListEssentialsDBHandler = new PDFListEssentialsDBHandler(this);
         doc_list = pdfListEssentialsDBHandler.getAllPDFs();
@@ -57,17 +57,47 @@ public class ScanListActivity extends AppCompatActivity {
         init();
         generateItem();
 
+        if (doc_list.size() == 0) {
+            noResults.setVisibility(View.VISIBLE);
+            noResults.setText("No Documents Saved!");
+        } else {
+            noResults.setVisibility(View.INVISIBLE);
+        }
+
         docsRecyclerViewAdapter.setOnItemClickListener(position -> {
-            File file = new File(getExternalFilesDir(null) + "/Summer/" + doc_list.get(position).getDocName()+".pdf");
+            File file = new File(getExternalFilesDir(null) + "/Summer/" + doc_list.get(position).getDocName() + ".pdf");
             Intent intent = new Intent(Intent.ACTION_VIEW);
-            Uri uri = FileProvider.getUriForFile(ScanListActivity.this,BuildConfig.APPLICATION_ID + ".provider",file);
+            Uri uri = FileProvider.getUriForFile(ScanListActivity.this, BuildConfig.APPLICATION_ID + ".provider", file);
             intent.setDataAndType(uri, "application/pdf");
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             startActivity(intent);
         });
 
+        searchBar = findViewById(R.id.search_bar);
+        searchBar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
+        });
+
+        searchBar.setOnFocusChangeListener((v, hasFocus) -> {
+            if (!hasFocus) {
+                searchBar.setText(null);
+                searchBar.clearFocus();
+            }
+        });
 
         DOC_button = findViewById(R.id.DOC_btn);
         DOC_button.setOnClickListener(v -> {
@@ -84,9 +114,27 @@ public class ScanListActivity extends AppCompatActivity {
 //        });
     }
 
+    @SuppressLint("SetTextI18n")
+    private void filter(String text) {
+        ArrayList<ScanDocListDetails> filteredList = new ArrayList<>();
+        if (doc_list.size() == 0) return;
+        for (ScanDocListDetails item : doc_list) {
+            if (item.getDocName().toLowerCase().contains(text.toLowerCase())) {
+                filteredList.add(item);
+            }
+        }
+        if (filteredList.size() == 0) {
+            noResults.setVisibility(View.VISIBLE);
+            noResults.setText("No results found...");
+        } else {
+            noResults.setVisibility(View.INVISIBLE);
+        }
+        docsRecyclerViewAdapter.filteredList(filteredList);
+    }
+
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(ScanListActivity.this,DashboardActivity.class));
+        startActivity(new Intent(ScanListActivity.this, DashboardActivity.class));
     }
 
     private void generateItem() {
